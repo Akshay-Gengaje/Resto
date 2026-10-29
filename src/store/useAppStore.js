@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export const useAppStore = create((set, get) => ({
-  view: 'customer',
+  view: 'admin',
   setView: (view) => set({ view }),
   
   cart: [],
@@ -16,6 +16,7 @@ export const useAppStore = create((set, get) => ({
   removeFromCart: (id) => set((state) => ({
     cart: state.cart.map(i => i.id === id ? { ...i, qty: i.qty - 1 } : i).filter(i => i.qty > 0)
   })),
+  clearCart: () => set({ cart: [] }),
 
   // Memoized selectors conceptually provided here
   getCartTotal: () => {
